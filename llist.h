@@ -86,8 +86,10 @@ void print(element e){
         printf("NIL");
     }
     else {
+        printf("(");
         print(e.l->next->el);
     }
+    printf(")");
 }
 
 #endif //COMP_348_A1_Q5_LLIST_H

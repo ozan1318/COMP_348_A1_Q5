@@ -1,6 +1,8 @@
 #ifndef COMP_348_A1_Q5_LLIST_H
 #define COMP_348_A1_Q5_LLIST_H
 #include <stddef.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 typedef enum { ATOM, LIST } eltype;
 typedef char atom;
@@ -68,7 +70,24 @@ list append(list l1, list l2){
 }
 
 void lfreer(list l){
+    if (l->next != NULL){
+        lfreer(l->next);
+    }
+    else{
+        free(l);
+    }
+}
 
+void print(element e){
+    if (e.type == ATOM){
+        printf("%c", e.a);
+    }
+    else if (e.l == NULL){
+        printf("NIL");
+    }
+    else {
+        print(e.l->next->el);
+    }
 }
 
 #endif //COMP_348_A1_Q5_LLIST_H

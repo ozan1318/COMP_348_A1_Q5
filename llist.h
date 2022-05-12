@@ -1,9 +1,6 @@
-//
-// Created by ozana on 10-May-22.
-//
-
 #ifndef COMP_348_A1_Q5_LLIST_H
 #define COMP_348_A1_Q5_LLIST_H
+#include <stddef.h>
 
 typedef enum { ATOM, LIST } eltype;
 typedef char atom;
@@ -21,4 +18,11 @@ typedef struct _listnode {
 } * list;
 const element NIL = { .type=LIST, .l=NULL };
 
+element aasel(atom a){
+
+}
+
+list cdr(element e){
+
+}
 #endif //COMP_348_A1_Q5_LLIST_H

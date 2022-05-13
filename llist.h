@@ -7,6 +7,7 @@
 typedef enum { ATOM, LIST } eltype;
 typedef char atom;
 struct _listnode;
+
 typedef struct {
     eltype type;
     union {
@@ -14,19 +15,22 @@ typedef struct {
         struct _listnode* l;
     };
 } element;
+
 typedef struct _listnode {
     element el;
     struct _listnode* next;
 } * list;
-const element NIL = { .type=LIST, .l=NULL };
+
+const element NIL = { .type = LIST, .l = NULL };
+
 
 element aasel(atom a){
-    element element1 = {ATOM, a, NULL};
+    element element1 = {.type = ATOM, .a = a};
     return element1;
 }
 
-element lasel(atom a){
-    element element1 = {LIST, a, NULL};
+element lasel(list l){
+    element element1 = {.type = LIST, .l = l};
     return element1;
 }
 
@@ -54,14 +58,14 @@ list cddr(element e){
 }
 
 list cons(element e, list l){
-    list list1;
+    list list1 = malloc(sizeof(list));
     list1->el = e;
     list1->next = l;
     return list1;
 }
 
 list append(list l1, list l2){
-    struct _listnode* lptr = &l1->next;
+    struct _listnode* lptr = l1->next;
     while (lptr->next != NULL){
         lptr = lptr->next;
     }
@@ -87,6 +91,7 @@ void print(element e){
     }
     else {
         printf("(");
+        print(e.l->el);
         print(e.l->next->el);
     }
     printf(")");
